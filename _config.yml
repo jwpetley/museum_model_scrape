@@ -112,6 +112,8 @@ navbar:
   nav:
   - title   : About 
     url     : about
+  - title   : Our Collections
+    url     : collections
   # - title   : # Label submenu
   #   child:
   #    - title: # Child label
@@ -138,7 +140,7 @@ chulapa-skin:
   skin         :  # Optional predefined skins
   autothemer    : true # Bool: Use autotheming
   vars          :
-    primary     : "#000000"  #default ["#007bff"] - Bootstrap blue
+    primary     : "#090b20"  #default ["#007bff"] - Bootstrap blue
 
 # D. Jekyll Defaults and collections: see https://jekyllrb.com/
 

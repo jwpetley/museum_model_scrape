@@ -19,7 +19,7 @@ title_separator         :     #default [" | "]
 subtitle                :     #default [your-repository-tagline]
 description             :  "Come and experience the greatest humanity has to offer!"   #default [your-repository-tagline]
 url                     :  digitalpantheon.study   #See baseurl - On Github Pages you may leave it blank - If you use CNAME use your domain
-baseurl                 :  /docs   #On Github Pages you may leave it blank. Have a look to: https://byparker.com/blog/2014/clearing-up-confusion-around-baseurl/
+baseurl                 :   #On Github Pages you may leave it blank. Have a look to: https://byparker.com/blog/2014/clearing-up-confusion-around-baseurl/
 words_per_minute        :     #default[200]
 timezone                :     #"Europe/Madrid ,see https://jekyllrb.com/docs/configuration/options/ and https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 
@@ -27,7 +27,7 @@ timezone                :     #"Europe/Madrid ,see https://jekyllrb.com/docs/con
 og_image                :     #default[author.avatar (see below)] or [github-avatar]
 twitter_site            :     #Avoid @
 author:
-  name                  :  DigitalPanethon   # Name Surname Company
+  name                  :  DigitalPantheon   # Name Surname Company
   avatar                :     # Try a square file. Info: Your github avatar on https://github.com/[USERNAME].png
   location              :  Durham, UK   # New York, USA
   links:
@@ -105,15 +105,15 @@ comments:
 #   "brand" options would be set on the left side of your navbar
 #   "nav" would be set on the right side. Two-level nav links available
 navbar:
-  style     :  #default is the classical top navbar, set "fab" for a floating action button navbar or "dual"
+  style     :  fab #default is the classical top navbar, set "fab" for a floating action button navbar or "dual"
   expand    :  # At which device size expand the navbar menu. default[md] https://getbootstrap.com/docs/4.5/layout/overview/
   brand:
-    title   :  # Title in navbar
-    url     :  # default["url/baseurl"]
+    title   :  Home # Title in navbar
+    url     :  index # default["url/baseurl"]
 
   nav:
-  - title   : Home # Label
-    url     : # url
+  - title   : About 
+    url     : about
   - title   : # Label submenu
     child:
      - title: # Child label

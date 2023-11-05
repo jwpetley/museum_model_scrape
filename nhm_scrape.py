@@ -153,8 +153,7 @@ if __name__ == "__main__":
     }   
     )
 
-
-    url = "https://sketchfab.com/NHM_Imaging/collections"
+    url =  "https://sketchfab.com/NHM_Imaging" 
 
     collections = get_collections(url)
     print(collections)

@@ -15,13 +15,14 @@ def get_collections(url):
     # Parse the page
     soup = BeautifulSoup(page.text, 'html.parser')
 
-    thumbs = soup.find_all("div", class_= "c-grid_item item")
 
+    thumbs = soup.find_all("div", class_= "c-grid__item item")
+    
     # Get the model links
     collections = {}
     for item in thumbs:
-        collection_link = item.find("a", class_ = "card__main card-collection__thumbnails").get("href")
-        collections[item.find("span", class_= "label").get("title")] = collection_link 
+        collection_link = item.find("a", class_ = "label").get("href")
+        collections[item.find("a", class_= "label").get("title")] = collection_link 
 
     return collections
 
@@ -44,7 +45,7 @@ def get_pieces(collection):
     thumbs = soup.find_all("div", class_= "c-grid__item item")
     
     for thumb in thumbs:
-        link_elements = thumb.find('a', class_= "help card-model__feature--downloads")
+        link_elements = thumb.find('a', class_= "help card-model__feature --downloads")
         link = link_elements.get('href')
         links.append(link)
 
@@ -88,8 +89,14 @@ def get_model(piece_link, download_dir):
     "download.prompt_for_download": False,
     "download.directory_upgrade": True,
     "profile.managed_default_content_settings.images": 2,
+    "profile.default_content_settings.popups": 0,
+    # Cookies
+    "profile.default_content_setting_values.cookies": 1,
     }   
     )
+
+    options.add_argument(r"--user-data-dir=/home/qjfn45/.config/google-chrome/Default") #e.g. C:\Users\You\AppData\Local\Google\Chrome\User Data
+    options.add_argument(r'--profile-directory=Default') #e.g. Profile 3
 
     WINDOW_SIZE = "1920,1080"
 
@@ -99,42 +106,34 @@ def get_model(piece_link, download_dir):
 
     driver = webdriver.Chrome(options = options)
     driver.get(piece_link)
-    text = "button btn-primary btn-small button-source"
-    objtext = 'j075PB9'
-    obj = driver.find_element(By.XPATH, f"//div[@class='{objtext}']")
-    download_button = obj.find_element(By.XPATH, f"//button[@class='{text}']")
-    download_button.click()
 
-    #try:
-        #try:
-        #    file_type = "\"Low Resolution 3D Mesh, OBJ\""
-        #    usdz_file = driver.find_element(By.XPATH, 
-        #                                    f"//a[contains(., {file_type})]")
-        
-        #except:
-        #    try:
-        #        file_type = "\"Low Resolution 3D mesh, obj\""
-        #        usdz_file = driver.find_element(By.XPATH, 
-        #                                    f"//a[contains(., {file_type})]")
-        #    except:
-        #        file_type = "\"Low resolution 3D mesh, obj\""
-        #        usdz_file = driver.find_element(By.XPATH, 
-        #                                    f"//a[contains(., {file_type})]")
+    #email = driver.find_element(By.XPATH, "//input[@name='email']")
+    #password = driver.find_element(By.XPATH, "//input[@type='password']")
+
+    #email.send_keys("heather.sm555@gmail.com")
+    #password.send_keys("Password123!")
+
+    #button = driver.find_element(By.XPATH, "//button[@data-selenium='submit-button']")
+    #button.click()
+    
 
 
-        #file_name = usdz_file.get_attribute("href").split("/")[-1]
 
-       
-        #if file_name in os.listdir(download_dir):
-        #    print("File already exists.")
-        #    return None
-        
-        #driver.execute_script("arguments[0].scrollIntoView();", usdz_file)
-        #usdz_file.click()
 
-    seconds = download_wait(download_dir, 300)
+    try:
 
-    print("Download took {} seconds.".format(seconds))
+        text = "button btn-primary btn-small button-source"
+        objtext = 'jv075PB9'
+        obj = driver.find_element(By.XPATH, f"//div[@class='{objtext}']")
+        download_button = obj.find_element(By.XPATH, f"//button[@class='{text}']")
+        download_button.click()
+
+        seconds = download_wait(download_dir, 300)
+        print("Download took {} seconds.".format(seconds))
+    except:
+        pass
+
+    
     #except: 
     #    pass
 
@@ -150,10 +149,11 @@ if __name__ == "__main__":
     "download.prompt_for_download": False,
     "download.directory_upgrade": True,
     "profile.managed_default_content_settings.images": 2,
+    
     }   
     )
 
-    url =  "https://sketchfab.com/NHM_Imaging" 
+    url =  "https://sketchfab.com/NHM_Imaging/collections" 
 
     collections = get_collections(url)
     print(collections)
@@ -169,6 +169,7 @@ if __name__ == "__main__":
 
 
         for piece in pieces:
+            print(piece)
             get_model(piece, download_dir)
             print("Downloaded model {} from collection {}.".format(piece, collection))
 

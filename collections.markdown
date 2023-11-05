@@ -1,7 +1,7 @@
 ---
 layout: default
 title: '<span class="chulapa">Digital Pantheon</span>'
-subtitle: Scroll down for our story...
+subtitle: Scroll down for our collections...
 excerpt: Take a walk through the collections of the greatest museums.
 header_type: splash
 header_img: "https://billybdigital.files.wordpress.com/2013/05/sc270875.jpg?w=960&h=400&crop=1"

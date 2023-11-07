@@ -139,6 +139,15 @@ def get_model(piece_link, download_dir):
 
     driver.quit()
 
+
+def push_to_cloud(folder):
+    '''Function takes directory and uploads zip files to google cloud bucket'''
+    import subprocess
+
+    subprocess.run(["gcloud", "storage", "cp", folder+"/*.zip", "gs://init-museum-models/"])
+
+    return None
+
 if __name__ == "__main__":
 
     download_dir_base = "/home/qjfn45/Documents/museum_model_scrape/models"
@@ -153,7 +162,7 @@ if __name__ == "__main__":
     }   
     )
 
-    url =  "https://sketchfab.com/NHM_Imaging/collections" 
+    """url =  "https://sketchfab.com/NHM_Imaging/collections" 
 
     collections = get_collections(url)
     print(collections)
@@ -171,6 +180,10 @@ if __name__ == "__main__":
         for piece in pieces:
             print(piece)
             get_model(piece, download_dir)
-            print("Downloaded model {} from collection {}.".format(piece, collection))
+            print("Downloaded model {} from collection {}.".format(piece, collection))"""
+    
 
-    #push_to_cloud(download_dir)
+    for folder in os.listdir(download_dir_base):
+        download_dir = download_dir_base + "/" + folder
+        print(download_dir)
+        push_to_cloud(download_dir)

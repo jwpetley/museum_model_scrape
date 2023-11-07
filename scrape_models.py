@@ -14,20 +14,7 @@ def get_file(url):
     title_text = "Download Free 3D Model"
     download_button = driver.find_element(By.XPATH, f"//button[@title='{title_text}']")
     download_button.click()
-    user = 'email'
-    username = driver.find_element(By.XPATH, f"//input[@type='{user}']")
     
-    if username:
-        email = "heather.sm555@gmail.com"
-        pw = "Password123!"
-        key = 'password'
-        password = driver.find_element(By.XPATH, f"//input[@type='{key}']")
-        ActionChains(driver)\
-            .send_keys_to_element(username, email)\
-            .perform()
-        ActionChains(driver)\
-            .send_keys_to_element(password, pw)\
-            .perform()
 
     obj = "jv075PB9"
     objelement = driver.find_element(By.XPATH, f"//div[@class='{obj}']")
